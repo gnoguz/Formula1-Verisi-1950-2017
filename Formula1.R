@@ -1,6 +1,6 @@
 ##OGUZHAN#GUNDUZ##
-#20505063#
-#IST5128_Proje#
+##gnoguz@outlook.com##
+
 
 
 library(dplyr)
@@ -27,7 +27,7 @@ datatable(F1data, options = list(scrollX=T))
 summary(F1data)
 
 
-#1)SEZONLARDAKİ PİLOT SAYILARI
+#1)SEZONLARDAKÃ PÃLOT SAYILARI
 
 one_seoson_pilot_number <- F1data %>% group_by(season, full.name) %>%
   summarise(number_of_pilot = n())%>%  
@@ -41,9 +41,9 @@ datatable(one_seoson_pilot_number)
 ggplot(data = one_seoson_pilot_number)+
   geom_col(aes(x=season, 
                y = number_of_pilot, ),fill = "blue",  size=5)+
-  labs(x = "Yıllar", 
-       y = "Her Yıldaki Pilot Sayısı",
-       title = "Yıllara Göre Pilot Sayıları")+
+  labs(x = "YÃ½llar", 
+       y = "Her YÃ½ldaki Pilot SayÃ½sÃ½",
+       title = "YÃ½llara GÃ¶re Pilot SayÃ½larÃ½")+
   theme_bw()
 
 
@@ -54,7 +54,7 @@ datatable(one_seoson_pilot_number, options = list(scrollX=T))
 
 
 
-#2)SEZONLARDAKİ PİST SAYILARI
+#2)SEZONLARDAKÃ PÃST SAYILARI
 
 one_seoson_circuit_number <- F1data %>% group_by(season, circuitName) %>%
   summarise(number_of_circuit = n())%>%  
@@ -66,9 +66,9 @@ one_seoson_circuit_number
 ggplot(data = one_seoson_circuit_number)+
   geom_col(aes(x=season, 
                y =number_of_circuit ),fill = "red",  size=5)+
-  labs(x = "Yıllar", 
-       y = "Her Yıldaki Pist Sayısı",
-       title = "Yıllara Göre Pist Sayıları")+
+  labs(x = "YÃ½llar", 
+       y = "Her YÃ½ldaki Pist SayÃ½sÃ½",
+       title = "YÃ½llara GÃ¶re Pist SayÃ½larÃ½")+
   theme_bw()
 
 datatable(one_seoson_circuit_number, options = list(scrollX=T))
@@ -78,15 +78,15 @@ datatable(one_seoson_circuit_number, options = list(scrollX=T))
 
 
 
-#3)2000-2017 YILLARI ARASINDAKİ YARIŞAN TAKIMLARIN ÜLKE DAĞILIMLARI 
+#3)2000-2017 YILLARI ARASINDAKÃ YARIÃAN TAKIMLARIN ÃœLKE DAÃILIMLARI 
 
 F1data %>%filter(season>2000) %>%  select(Constructor.name, Constructor.nationality) %>%
   ggplot()+
   geom_point(aes(x= Constructor.nationality, 
                  y = Constructor.name), color = "blue", size = 5)+
-  labs(x = "Takımın Ülkesi", 
-       y = "Takımın İsmi",
-       title = "Takımların Ülkelere Göre DAğılımı")+
+  labs(x = "TakÃ½mÃ½n Ãœlkesi", 
+       y = "TakÃ½mÃ½n Ãsmi",
+       title = "TakÃ½mlarÃ½n Ãœlkelere GÃ¶re DAÃ°Ã½lÃ½mÃ½")+
   theme_bw()
 
 
@@ -94,7 +94,7 @@ F1data %>%filter(season>2000) %>%  select(Constructor.name, Constructor.national
 
 
 
-#4)HER SEZONUN ŞAMPİYON PİLOTUNUN HESAPLANMASI
+#4)HER SEZONUN ÃAMPÃYON PÃLOTUNUN HESAPLANMASI
 
 sampiyonlar<-F1data %>% select(season,full.name,results.grid, points) %>%
   group_by(full.name, season) %>%  summarise(total = sum(points)) %>%
@@ -111,16 +111,16 @@ datatable(sampiyonlar)
   scale_colour_gradient(low = "blue", high = "red", na.value = NA)+
   labs(x = "Toplam Puan", 
        y = "Pilotlar",
-       title = "Şampiyon Olan Pilotların Toplam Puanları")+
+       title = "Ãampiyon Olan PilotlarÃ½n Toplam PuanlarÃ½")+
   theme_bw()
 
 
 
 
-#5)PİLOTLARIN YARIŞTIKLARI YAŞLAR
+#5)PÃLOTLARIN YARIÃTIKLARI YAÃLAR
 
 
-#"-" ile ayrılan tarihlerin düzeltilmesi
+#"-" ile ayrÃ½lan tarihlerin dÃ¼zeltilmesi
 
 for (i in 1:length(F1data$dateOfBirth)-1){
   f1split <- strsplit(F1data$dateOfBirth[i], split = "")
@@ -149,7 +149,7 @@ for (i in 1:length(F1data$dateOfBirth)-1){
 F1data$dateOfBirth
 
 
-# Gün,ay ve yılın ayrılması
+# GÃ¼n,ay ve yÃ½lÃ½n ayrÃ½lmasÃ½
 
 F1data$race_day <- str_split(F1data$date,"/",simplify = T)[,1]
 F1data$race_month <- str_split(F1data$date,"/",simplify = T)[,2]
@@ -193,7 +193,7 @@ datatable(F1data, options = list(scrollX=T))
 
 
 
-#6)HER BİR PİLOTUN NE KADAR YARIŞ KAZANDIĞI
+#6)HER BÃR PÃLOTUN NE KADAR YARIÃ KAZANDIÃI
 
 #Fonksiyon
 Lead_pilot <- function(x){
@@ -207,7 +207,7 @@ Lead_pilot <- function(x){
   F1data$familyName
   
   if(!is.character(x)){
-    stop('Bu Fonksiyon Sadece Pilot İsimleri İle Çalışmaktadır\n',
+    stop('Bu Fonksiyon Sadece Pilot Ãsimleri Ãle Ã‡alÃ½Ã¾maktadÃ½r\n',
          ' classes:\n',
          'x: ', class(x))
   }
@@ -216,7 +216,7 @@ Lead_pilot <- function(x){
   if( x %in% F1data$familyName){
     
   }else{
-    stop('Aradığınız Kişi Pilotlar Arasında Yok')
+    stop('AradÃ½Ã°Ã½nÃ½z KiÃ¾i Pilotlar ArasÃ½nda Yok')
     
   }
   
@@ -240,7 +240,7 @@ wins
 Lead_pilot("SCHUMACHER")
 
 
-#Pilot İsimlerinin ve Kazandıkları Yarış Sayılarının Birleştirilmesi
+#Pilot Ãsimlerinin ve KazandÃ½klarÃ½ YarÃ½Ã¾ SayÃ½larÃ½nÃ½n BirleÃ¾tirilmesi
 pilots<-  F1data %>%  select(familyName, results.grid) %>%  group_by(familyName) %>% 
   summarise(race_number_for_each_pilot = n()) 
 
@@ -256,24 +256,24 @@ wins <- data.frame(pilot_name,wins)
 datatable(wins)
 
 
-#Görselleştirme
+#GÃ¶rselleÃ¾tirme
 wins %>% filter(wins > 5) %>%
   ggplot()+
   geom_col(aes(x=wins, 
                  y = pilot_name, 
                  fill = wins) ,size=2 )+
   scale_fill_gradient(low = "blue", high = "red", na.value = NA)+
-  labs(x = "Kazandıkları Yarış Sayısı", 
-       y = "Pilotların İsmi",
-       title = "5'ten Fazla Yarış Kazana Pilotların Kazandıkları Yarış Sayıları")+
+  labs(x = "KazandÃ½klarÃ½ YarÃ½Ã¾ SayÃ½sÃ½", 
+       y = "PilotlarÃ½n Ãsmi",
+       title = "5'ten Fazla YarÃ½Ã¾ Kazana PilotlarÃ½n KazandÃ½klarÃ½ YarÃ½Ã¾ SayÃ½larÃ½")+
   theme_bw()
 
 
 
 
-#7)PİLOTLARIN YARIŞ BAŞINA ALDIKLARI PUANLAR
+#7)PÃLOTLARIN YARIÃ BAÃINA ALDIKLARI PUANLAR
 
-#katıldıkları yarışların hesaplanması için fonksiyon
+#katÃ½ldÃ½klarÃ½ yarÃ½Ã¾larÃ½n hesaplanmasÃ½ iÃ§in fonksiyon
 Races_pilot <- function(x){
   
   
@@ -337,9 +337,9 @@ yaris_basi_puan %>% filter(yaris_basi_puan>2) %>%
   ggplot()+
   geom_point(aes(x= yaris_basi_puan, 
                  y = familyName), color = "red", size = 3)+
-  labs(x = "Yarış Başına Puan", 
+  labs(x = "YarÃ½Ã¾ BaÃ¾Ã½na Puan", 
        y = "Pilotlar",
-       title = "Her Bir Pilotun Yarış Başına Aldığı Puan")+
+       title = "Her Bir Pilotun YarÃ½Ã¾ BaÃ¾Ã½na AldÃ½Ã°Ã½ Puan")+
   theme_bw()
 
 
